@@ -1,0 +1,1 @@
+web: gunicorn App4:app

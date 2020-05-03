@@ -1,0 +1,24 @@
+{%extends "layout.html"%}
+{%block content%}
+
+<div class="home">
+
+    <div class="d-item">
+        <form id="input-expense">
+            <label>Quantity</label>
+            <input type="number" name="quantity">
+            <label>Category</label>
+            <select id="cat-exp" name="cat-exp">
+                <option value="Restaurant">Restaurant</option>
+                <option value="Groceries">Groceries</option>
+                <option value="Transport">Transport</option>
+                <option value="Clothing">Clothing</option>
+            </select>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+
+</div>
+
+{%endblock%}

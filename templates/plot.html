@@ -1,0 +1,19 @@
+{%extends "layout.html"%}
+{%block content%}
+
+<link rel="stylesheet" href="{{cdn_css | safe}}" type="text/css" />
+<script type="text/javascript" src="{{cdn_js | safe}}"></script>
+
+<div class="plot">
+    <h1>Plot</h1>
+    <p>{{company | safe}}</p>
+    <form method="POST">
+        <input name="company">
+        <input type="submit">
+    </form>
+</div>
+
+{{script1 | safe}}
+{{div1 | safe}}
+
+{%endblock%}
