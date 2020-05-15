@@ -4,36 +4,149 @@
 <div class="home">
 
     <div class="d-item" id="i-expense">
-        <form id="input-expense">
-            <label>Quantity</label>
-            <input type="number" name="quantity">
+        <form id="input-expense" method="POST">
+            <label>Amount</label>
+            <input type="number" step="0.01" name="amount">
             <label>Category</label>
-            <select id="cat-exp" name="cat-exp">
-                <option value="Restaurant">Restaurant</option>
-                <option value="Groceries">Groceries</option>
-                <option value="Transport">Transport</option>
-                <option value="Clothing">Clothing</option>
+            <select id="category" name="category">
+                {%for i in range(0, lencat)%}
+                    <option value={{categories[i].category}}>{{categories[i].category}}</option>
+                {%endfor%}
             </select>
-            <input type="submit" value="Submit">
+            <label>Date</label>
+            <input type="date" name="date">
+            <label>Note</label>
+            <input type="text" name="note">
+            <input type="submit" name="submit-input-expense" value="Submit">
         </form>
     </div>
-    <div class="d-item" id="i-range">
-        <form id="input-range">
-            <label for="start">Start date:</label>
-            <input type="date" id="start" name="trip-start">
-            <label for="start">End date:</label>
-            <input type="date" id="end" name="trip-start">
-            <input type="submit" value="Submit">
+    <div class="d-item" id="i-expense">
+        <form id="cat-man" method="POST">
+            <label>Category</label>
+            <input type="text" name="cat-mod">
+            <input type="submit" name="cat-add" value="+">
+            <input type="submit" name="cat-delete" value="-">
         </form>
+    </div >
+   
+    <div class="d-item" id="i-donnut">
+          <div class="d-item" id="i-range">
+        <form id="input-range" method="POST">
+            <label for="start">Start date:</label>
+            <input type="date" id="start" name="start">
+            <label for="start">End date:</label>
+            <input type="date" id="end" name="end">
+            <input type="submit"name="submit-date" value="Submit">
+        </form>
+        </div>
+        <canvas id="donnutChart"></canvas>
     </div>
     <div class="d-item" id="i-chart">
         <canvas id="myChart"></canvas>
     </div>
-    <div class="d-item" id="i-donnut">
-        <canvas id="donnutChart"></canvas>
+   
+    <div class="d-item" id="i-table">
+        <table style="width:100%">
+            <tr>
+                <th>User_id</th>
+                <th>Date</th>
+                <th>Category</th>
+                <th>Amount</th>
+                <th>Note</th>
+            </tr>
+            {%for i in range(0, len)%}
+            <tr>
+                <td>{{expenses[i].user_id}}</td>
+                <td>{{expenses[i].date}}</td>
+                <td>{{expenses[i].category}}</td>
+                <td>{{expenses[i].amount}}</td>
+                <td>{{expenses[i].note}}</td>
+            </tr>
+            {%endfor%}
+        </table>
     </div>
 
 
 </div>
+<script>
+    console.log({{expjson}});
+</script>
+<script>
+
+</script>
+<script>
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'bar',
+
+        // The data for our dataset
+        data: {
+            labels: ['Restaurant', 'Groceries', 'Transport', 'Clothing'],
+            datasets: [{
+                    label: 'Low',
+                    data: [15],
+                    backgroundColor: '#D6E9C6' // green
+                },
+                {
+                    label: 'Moderate',
+                    data: [20.7],
+                    backgroundColor: '#FAEBCC' // yellow
+                },
+                {
+                    label: 'High',
+                    data: [11.4],
+                    backgroundColor: '#EBCCD1' // red
+                }
+            ]
+        },
+
+        // Configuration options go here
+        options: {	
+                title: {
+                    display: true,
+                    text: 'Chart.js Bar Chart - Stacked'
+                },
+                tooltips: {
+                    mode: 'index',
+                    intersect: false
+                },
+                responsive: true,
+                scales: {
+                    xAxes: [{
+                        stacked: true,
+                    }],
+                    yAxes: [{
+                        stacked: true
+                    }]
+                }
+            }
+    });
+
+    var ctx2 = document.getElementById('donnutChart').getContext('2d');
+    var chart2 = new Chart(ctx2, {
+        // The type of chart we want to create
+        type: 'doughnut',
+
+        // The data for our dataset
+        data: {
+            datasets: [{
+                data: {{exp_cat}},
+                backgroundColor: ["rgb(255, 99, 132)", "rgb(54, 162, 235)", "rgb(255, 205, 86)","rgb(150, 102, 35)"]
+            }],
+
+            // These labels appear in the legend and in the tooltips when hovering different arcs
+            labels: [
+                'Restaurant',
+                'Groceries',
+                'Transport',
+                'Clothing'
+            ]
+        },
+
+        // Configuration options go here
+        options: {}
+    });
+</script>
 
 {%endblock%}
