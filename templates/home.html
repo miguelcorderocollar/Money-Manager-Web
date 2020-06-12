@@ -2,7 +2,7 @@
 {%block content%}
 
 <div class="home">
-
+    <h1>Hi, {{ current_user.username }}!</h1>
     <div class="d-item" id="i-expense">
         <form id="input-expense" method="POST">
             <label>Amount</label>
@@ -10,7 +10,7 @@
             <label>Category</label>
             <select id="category" name="category">
                 {%for i in range(0, lencat)%}
-                    <option value={{categories[i].category}}>{{categories[i].category}}</option>
+                    <option value={{categories[i]}}>{{categories[i]}}</option>
                 {%endfor%}
             </select>
             <label>Date</label>
@@ -42,6 +42,15 @@
         <canvas id="donnutChart"></canvas>
     </div>
     <div class="d-item" id="i-chart">
+        <form id="cat-man" method="POST">
+            <label>Year selection</label>
+            <select id="year" name="year">
+                    <option value='2020'>2020</option>
+                    <option value='2019'>2019</option>
+                    <option value='2018'>2018</option>
+            </select>
+            <input type="submit" name="submit-year" value="Submit">
+        </form>
         <canvas id="myChart"></canvas>
     </div>
    
@@ -68,12 +77,7 @@
 
 
 </div>
-<script>
-    console.log({{expjson}});
-</script>
-<script>
 
-</script>
 <script>
     var ctx = document.getElementById('myChart').getContext('2d');
     var chart = new Chart(ctx, {
@@ -82,22 +86,19 @@
 
         // The data for our dataset
         data: {
-            labels: ['Restaurant', 'Groceries', 'Transport', 'Clothing'],
-            datasets: [{
-                    label: 'Low',
-                    data: [15],
-                    backgroundColor: '#D6E9C6' // green
-                },
-                {
-                    label: 'Moderate',
-                    data: [20.7],
-                    backgroundColor: '#FAEBCC' // yellow
-                },
-                {
-                    label: 'High',
-                    data: [11.4],
-                    backgroundColor: '#EBCCD1' // red
-                }
+            labels: ['Jan', 'Feb', 'Mar','Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov','Dic'],
+            datasets: [
+                {%for i in range(0, lencat)%}
+                    {
+                    label: '{{categories[i]}}',
+                    data: [
+                            {%for j in range(0, 12)%}
+                                {{exp_t_c[j][i]}},
+                            {%endfor%}
+                            ],
+                    backgroundColor: '{{colors[i]}}'
+                },   
+                {%endfor%}
             ]
         },
 
@@ -105,7 +106,7 @@
         options: {	
                 title: {
                     display: true,
-                    text: 'Chart.js Bar Chart - Stacked'
+                    text: 'Year summary'
                 },
                 tooltips: {
                     mode: 'index',
@@ -132,15 +133,18 @@
         data: {
             datasets: [{
                 data: {{exp_cat}},
-                backgroundColor: ["rgb(255, 99, 132)", "rgb(54, 162, 235)", "rgb(255, 205, 86)","rgb(150, 102, 35)"]
+                backgroundColor: [
+                    {%for i in range(0, lencat)%}
+                        '{{colors[i]}}',
+                    {%endfor%}   
+                ]
             }],
 
             // These labels appear in the legend and in the tooltips when hovering different arcs
             labels: [
-                'Restaurant',
-                'Groceries',
-                'Transport',
-                'Clothing'
+                    {%for i in range(0, lencat)%}
+                        '{{categories[i]}}',
+                    {%endfor%}
             ]
         },
 

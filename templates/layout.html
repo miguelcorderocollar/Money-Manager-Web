@@ -5,6 +5,7 @@
     <title>Flask App</title>
 
     <!-- Custom JS -->
+    <script defer src="{{url_for('static',filename='js/login.js')}}"></script>
     <script defer src="{{url_for('static',filename='js/theme.js')}}"></script>
     <script defer src="{{url_for('static',filename='js/dashboard.js')}}"></script>
 
@@ -25,7 +26,8 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.0"></script>
 
 
-    <!-- CSS -->
+    <!-- CSS -->    
+    <link rel="stylesheet" href="{{url_for('static',filename='css/login.css')}}">
     <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
     <link rel="stylesheet" href="{{url_for('static',filename='css/dashboard.css')}}">
 
@@ -74,9 +76,15 @@
                     <span class="link-text">Settings</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a href="{{ url_for('login') }}" class="nav-link">
+                    <i class="fas fa-sign-in-alt fa-primary " style="font-size: 30px;"></i>
+                    <span class="link-text">Log In</span>
+                </a>
+            </li>
 
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ url_for('logout') }}" class="nav-link">
                     <i class="fas fa-sign-out-alt fa-primary " style="font-size: 30px;"></i>
                     <span class="link-text">Sign Out</span>
                 </a>

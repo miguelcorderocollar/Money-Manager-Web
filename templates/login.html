@@ -1,0 +1,31 @@
+{%extends "layout.html"%}
+{%block content%}
+
+<div class="logsign">
+    <div class="wrapper">
+        <div class="contain">
+          <h1>{{user_created | safe}}</h1>
+          <h1>{{login_error | safe}}</h1>
+          <div class="signup">Sign Up</div>
+          <div class="login">Log In</div>
+           <form class="signup-form" method="POST">
+              <input type="email" placeholder="Your Email Address" class="inputform" name="email"><br />
+              <input type="text" placeholder="Choose a Username" class="inputform"  name="username"><br />
+              <input type="password" placeholder="Choose a Password" class="inputform"  name="password"><br />
+              <input class="btn" type="submit" name="submit-signup" value="Submit">
+           </form>
+          <form class="login-form" method="POST">
+              <input type="text" placeholder="Email or Username" class="inputform" name="email_or_username"><br />
+              <input type="password" placeholder="Password" class="inputform" name="password"><br />
+              <input type="checkbox" name="rememberMe" id="rememberMe"> <label for="rememberMe">Remember me</label>
+              <input class="btn" type="submit" name="submit-login" value="Submit">
+              <span><a href="#">I forgot my username or password.</a></span>
+           </form>
+          
+        </div>
+      </div>
+</div>
+
+
+
+{%endblock%}
