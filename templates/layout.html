@@ -61,8 +61,6 @@
                 </a>
             </li>
 
-
-
             <li class="nav-item">
                 <a href="{{ url_for('plot') }}" class="nav-link">
                     <i class="fas fa-info-circle fa-primary " style="font-size: 30px;"></i>
@@ -71,7 +69,7 @@
             </li>
 
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="#settings" class="nav-link">
                     <i class="fas fa-cog fa-primary " style="font-size: 30px;"></i>
                     <span class="link-text">Settings</span>
                 </a>
@@ -132,21 +130,6 @@
             </li>
         </ul>
     </nav>
-    <!--
-    <header>
-        <div class="container">
-            <h1 class="logo">Ardit's web app</h1>
-            <strong>
-                <nav>
-                    <ul class="menu">
-                        <li><a href="{{ url_for('home') }}">Home</a></li>
-                        <li><a href="{{ url_for('about') }}">About</a></li>
-                        <li><a href="{{ url_for('plot') }}">Plot</a></li>
-                    </ul>
-                </nav>
-            </strong>
-        </div>
-    </header> -->
     <main class="container">
         {%block content%}
         {%endblock%}

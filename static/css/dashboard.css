@@ -15,24 +15,35 @@
     padding: 20px;
     background: white;
     margin-top: 20px;
+    width: 50%;
+
+}
+
+#i-balance{
+    text-align: center;
+    width: 25%;
+
 }
 
 #i-expense {
-    /*grid-area: expense;*/
-    width: 50%;
+    
+}
+#i-cat {
+    
+}
+
+#i-income {
+    
 }
 
 #i-range {
-    /*grid-area: expense;*/
-    width: 50%;
+    
 }
 
 #i-chart {
-    /*grid-area: chart;*/
-    width: 50%;
+   
 }
 
 #i-donnut {
-    /*grid-area: chart;*/
-    width: 50%;
+   
 }

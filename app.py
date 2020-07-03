@@ -4,7 +4,6 @@ from flask_login import LoginManager, UserMixin, current_user, login_user,login_
 from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 
-
 app = Flask(__name__)
 
 app.secret_key = "6549841231618"
@@ -12,6 +11,14 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///site.db"
 db = SQLAlchemy(app)
 login=LoginManager(app)
 login.login_view = 'login'
+
+
+#--------------
+#Login Manager
+#--------------
+@login.user_loader
+def load_user(id):
+    return  User.query.get(id)
 
 #--------------
 #Data Base Model
@@ -73,10 +80,8 @@ def exp_by_date (start=datetime(datetime.today().year, datetime.today().month, 1
     expenses = Expenses.query.filter(Expenses.date>start,Expenses.date<end,Expenses.user_id==current_user.id).all()
     return expenses
 
-#hacerlo por categorias de la base de datos
 def exp_total_by_cat (expenses,cat):
     exp_cat=[0]*len(cat)
-    print(exp_cat)
     for expense in expenses:
         for j in range(0,len(cat)):
             if expense.category==cat[j]:
@@ -169,13 +174,17 @@ def getcategories():
             auxlist.append(cat[i].category)
     return auxlist
 
-#--------------
-#Login Manager
-#--------------
-@login.user_loader
-def load_user(id):
-    return  User.query.get(id)
+def get_balance():
+    expenses = Expenses.query.filter(Expenses.user_id==current_user.id).all()
+    incomes = Income.query.filter(Income.user_id==current_user.id).all()
+    balance=0
+    for expense in expenses:
+        balance-=expense.amount
+        print(balance)
+    for income in incomes:
+        balance+=income.amount
 
+    return round(balance,2)
 #--------------
 #Pages
 #--------------
@@ -188,7 +197,10 @@ def home():
     exp_cat=exp_total_by_cat(expenses,categories)
     colors=getcolors(categories)
     exp_t_c=exp_cat_year_by_month(categories)
-    return render_template("home.html", 
+    balance=get_balance()
+
+    
+    return render_template("home.html", balance=balance,
         expenses=expenses, 
         len=len(expenses),
         exp_cat=exp_cat,
@@ -206,16 +218,38 @@ def home_post():
         amount = request.form["amount"]
         category = request.form["category"]
         date = request.form["date"]
-        date=datetime(int(date[0:4]),int(date[5:7]),int(date[-2:]))
+        if len(date)<5 :
+            date=datetime.today()
+        else:
+            date=datetime(int(date[0:4]),int(date[5:7]),int(date[-2:]))
         note = request.form["note"]
         user_id = current_user.id
         expense = Expenses(category=category, amount=amount, note=note, user_id=user_id,date=date)
         db.session.add(expense)
         db.session.commit()
-    elif 'submit-date' in form:
+    
+    elif 'submit-input-income' in form:
+        amount = request.form["amount"]
+        category = request.form["category"]
+        date = request.form["date"]
+        if len(date)<5 :
+            date=datetime.today()
+        else:
+            date=datetime(int(date[0:4]),int(date[5:7]),int(date[-2:]))
+        note = request.form["note"]
+        user_id = current_user.id
+        income = Income(category=category, amount=amount, note=note, user_id=user_id,date=date)
+        db.session.add(income)
+        db.session.commit()
+
+    expenses=exp_by_date()
+    exp_cat=exp_total_by_cat(expenses,categories)
+
+    if 'submit-date' in form:
         start = request.form["start"]
         end = request.form["end"]
         expenses=exp_by_date(start,end)
+        exp_cat=exp_total_by_cat(expenses,categories)
     elif 'cat-add' in form:
         add_cat(request.form["cat-mod"])
     elif 'cat-delete' in form:
@@ -225,14 +259,12 @@ def home_post():
         year=int(request.form["year"])
         exp_t_c=exp_cat_year_by_month(categories,year)
     
-    expenses=exp_by_date()
-    exp_cat=exp_total_by_cat(expenses,categories)
     
+    balance=get_balance()
     colors=getcolors(categories)
 
-
     return render_template("home.html", 
-        expenses=expenses, 
+        expenses=expenses, balance=balance,
         len=len(expenses),
         exp_cat=exp_cat,
         categories=categories,
