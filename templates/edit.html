@@ -1,0 +1,62 @@
+{%extends "layout.html"%}
+{%block content%}
+
+
+<div class="edit-container">
+    <h1>Let's edit</h1>
+    <div id="t-expenses">
+        <table style="width:100%">
+        <tr>
+            <th>User_id</th>
+            <th>Date</th>
+            <th>Category</th>
+            <th>Amount</th>
+            <th>Note</th>
+            <th>Delete</th>
+        </tr>
+        {%for i in range(0, len_ex)%}
+        <tr>
+            <td>{{expenses[i].user_id}}</td>
+            <td>{{expenses[i].date.strftime("%d-%m-%Y")}}</td>
+            <td>{{expenses[i].category}}</td>
+            <td>{{expenses[i].amount}}€</td>
+            <td>{{expenses[i].note}}</td>
+            <td>
+                <a href="/delete?type=expense&id={{expenses[i].id}}">
+                    <img src="static\images\red-x.png"  height="20px" width="20px" />
+                </a>
+            </td>
+        </tr>
+        {%endfor%}
+    </table>
+    </div>
+    <div id="t-income">
+        <table style="width:100%">
+        <tr>
+            <th>User_id</th>
+            <th>Date</th>
+            <th>Category</th>
+            <th>Amount</th>
+            <th>Note</th>
+            <th>Delete</th>
+        </tr>
+        {%for i in range(0, len_in)%}
+        <tr>
+            <td>{{incomes[i].user_id}}</td>
+            <td>{{incomes[i].date.strftime("%d-%m-%Y")}}</td>
+            <td>{{incomes[i].category}}</td>
+            <td>{{incomes[i].amount}}€</td>
+            <td>{{incomes[i].note}}</td>
+            <td>
+                <a href="/delete?type=income&id={{incomes[i].id}}">
+                    <img src="static\images\red-x.png"  height="20px" width="20px" />
+                </a>
+            </td>
+        </tr>
+        {%endfor%}
+    </table>
+    </div>
+</div>
+
+
+{%endblock%}

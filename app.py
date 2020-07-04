@@ -174,17 +174,18 @@ def getcategories():
             auxlist.append(cat[i].category)
     return auxlist
 
-def get_balance():
-    expenses = Expenses.query.filter(Expenses.user_id==current_user.id).all()
-    incomes = Income.query.filter(Income.user_id==current_user.id).all()
+def get_balance(expenses,incomes):
     balance=0
     for expense in expenses:
         balance-=expense.amount
-        print(balance)
     for income in incomes:
         balance+=income.amount
 
     return round(balance,2)
+
+def get_timeline(expenses,incomes):
+    return
+
 #--------------
 #Pages
 #--------------
@@ -197,7 +198,12 @@ def home():
     exp_cat=exp_total_by_cat(expenses,categories)
     colors=getcolors(categories)
     exp_t_c=exp_cat_year_by_month(categories)
-    balance=get_balance()
+    
+    all_expenses = Expenses.query.filter(Expenses.user_id==current_user.id).all()
+    all_incomes = Income.query.filter(Income.user_id==current_user.id).all()
+    
+    balance=get_balance(all_expenses,all_incomes)
+    timeline=get_timeline(all_expenses,all_incomes)
 
     
     return render_template("home.html", balance=balance,
@@ -269,6 +275,31 @@ def home_post():
         exp_cat=exp_cat,
         categories=categories,
         lencat=len(categories),colors=colors ,exp_t_c=exp_t_c)
+
+@app.route("/edit")
+@login_required
+def edit():
+    expenses = Expenses.query.filter(Expenses.user_id==current_user.id).all()
+    incomes = Income.query.filter(Income.user_id==current_user.id).all()
+    
+    return render_template("edit.html",
+        expenses=expenses, 
+        incomes=incomes,
+        len_ex=len(expenses),len_in=len(incomes))
+
+@app.route("/delete")
+@login_required
+def delete():
+    type = request.args.get('type', type = str)
+    id = request.args.get('id', type = int)
+    if type=="expense":
+        Expenses.query.filter(Expenses.user_id==current_user.id, Expenses.id==id).delete()
+    elif type=="income":
+        Income.query.filter(Income.user_id==current_user.id, Income.id==id).delete()
+    db.session.commit()
+
+    return redirect(url_for('edit'))
+    
 
 @app.route("/login")
 def login():

@@ -6,10 +6,21 @@
 
     <div class="d-item" id="i-balance">
         <h2>Balance</h2>
-        <h1>{{balance}}</h1>
+        <h1>{{balance}}€</h1>
+    </div>
+
+    <div class="d-item" id="i-edit">
+        <h2>Edit Transactions</h2>
+        <form method="get" action="/edit">
+            <button type="submit">Let's go!</button>
+        </form>
+    </div>
+    <div class="d-item" id="i-timeline">
+        <canvas id="timelineGraph"></canvas>
     </div>
 
     <div class="d-item" id="i-expense">
+        <h2>Add Expense</h2>
         <form id="input-expense" method="POST">
             <label>Amount</label>
             <input type="number" step="0.01" name="amount">
@@ -27,6 +38,7 @@
         </form>
     </div>
     <div class="d-item" id="i-cat">
+        <h2>Add Category</h2>
         <form id="cat-man" method="POST">
             <label>Category</label>
             <input type="text" name="cat-mod">
@@ -36,10 +48,11 @@
     </div >
    
     <div class="d-item" id="i-income">
+        <h2>Add Income</h2>
         <form id="input-income" method="POST">
             <label>Amount</label>
             <input type="number" step="0.01" name="amount">
-            <label>Ctageory</label>
+            <label>Category</label>
             <select id="category" name="category">
                     <option value="Salary">Salary</option>
                     <option value="Allowance">Allowance</option>
@@ -56,18 +69,21 @@
     </div>
 
     <div class="d-item" id="i-donnut">
-          <div class="d-item" id="i-range">
-        <form id="input-range" method="POST">
-            <label for="start">Start date:</label>
-            <input type="date" id="start" name="start">
-            <label for="start">End date:</label>
-            <input type="date" id="end" name="end">
-            <input type="submit"name="submit-date" value="Submit">
-        </form>
+        <div class="d-item" id="i-range">
+            <h2>Monthly Summary</h2>
+            <form id="input-range" method="POST">
+                <label for="start">Start date:</label>
+                <input type="date" id="start" name="start">
+                <label for="start">End date:</label>
+                <input type="date" id="end" name="end">
+                <input type="submit"name="submit-date" value="Submit">
+            </form>
         </div>
         <canvas id="donnutChart"></canvas>
     </div>
+
     <div class="d-item" id="i-chart">
+        <h2>Annual Summary</h2>
         <form id="cat-man" method="POST">
             <label>Year selection</label>
             <select id="year" name="year">
@@ -174,6 +190,58 @@
 
         // Configuration options go here
         options: {}
+    });
+
+    var ctx3 = document.getElementById('timelineGraph').getContext('2d');
+    var chart3 = new Chart(ctx3, {
+        // The type of chart we want to create
+        type: 'line',
+
+        // The data for our dataset
+        data: {
+            labels: ["2015-03-15T13:03:00Z", "2015-03-25T13:02:00Z", "2015-04-25T14:12:00Z"],
+            datasets: [{
+            label: 'Demo',
+            data: [{
+                t: "2015-03-15T13:03:00Z",
+                y: 12
+                },
+                {
+                t: "2015-03-25T13:02:00Z",
+                y: 21
+                },
+                {
+                t: "2015-04-25T14:12:00Z",
+                y: 32
+                }
+            ],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                xAxes: [{
+                    type: 'time',
+                    distribution: 'linear'
+                }]
+            }
+        }
     });
 </script>
 
