@@ -184,8 +184,18 @@ def get_balance(expenses,incomes):
     return round(balance,2)
 
 def get_timeline(expenses,incomes):
-    return
-
+    combined=expenses+incomes
+    combined.sort(key=lambda r: r.date)
+    data=[]
+    balance=0
+    for item in combined:
+        if isinstance(item, Expenses):
+            balance=balance-item.amount
+        elif isinstance(item, Income):
+            balance=round(balance+item.amount,2)
+        data.append([item.date.strftime("%Y-%m-%d"),balance])
+    
+    return data
 #--------------
 #Pages
 #--------------
@@ -206,8 +216,8 @@ def home():
     timeline=get_timeline(all_expenses,all_incomes)
 
     
-    return render_template("home.html", balance=balance,
-        expenses=expenses, 
+    return render_template("home.html", balance=balance,timeline=timeline,
+        expenses=expenses, lentim=len(timeline),
         len=len(expenses),
         exp_cat=exp_cat,
         categories=categories,
@@ -265,13 +275,17 @@ def home_post():
         year=int(request.form["year"])
         exp_t_c=exp_cat_year_by_month(categories,year)
     
+    all_expenses = Expenses.query.filter(Expenses.user_id==current_user.id).all()
+    all_incomes = Income.query.filter(Income.user_id==current_user.id).all()
     
-    balance=get_balance()
+    balance=get_balance(all_expenses,all_incomes)
+    timeline=get_timeline(all_expenses,all_incomes)
+    
     colors=getcolors(categories)
 
     return render_template("home.html", 
-        expenses=expenses, balance=balance,
-        len=len(expenses),
+        expenses=expenses, balance=balance, timeline=timeline,
+        len=len(expenses), lentim=len(timeline),
         exp_cat=exp_cat,
         categories=categories,
         lencat=len(categories),colors=colors ,exp_t_c=exp_t_c)
