@@ -265,6 +265,7 @@ def home_post():
         start = request.form["start"]
         end = request.form["end"]
         expenses=exp_by_date(start,end)
+        print(expenses)
         exp_cat=exp_total_by_cat(expenses,categories)
     elif 'cat-add' in form:
         add_cat(request.form["cat-mod"])
