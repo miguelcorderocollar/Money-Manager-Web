@@ -10,10 +10,13 @@
 
 body {
     color: black;
-    background: rgb(17, 17, 147);
-    background: linear-gradient(27deg, rgba(17, 17, 147, 1) 0%, rgba(69, 12, 172, 1) 54%, rgba(133, 1, 255, 1) 100%);
+    background: rgb(0,255,244);
+    background: linear-gradient(234deg, rgba(0,255,244,1) 0%, rgba(175,0,255,1) 100%);
     margin: 0;
     padding: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
 }
 
 body::-webkit-scrollbar {
@@ -93,11 +96,12 @@ main {
 }
 
 .fa-primary {
-    color: #ff7eee;
+    color: #00fff4;
+
 }
 
 .fa-secondary {
-    color: #df49a6;
+    color: #af00ff;
 }
 
 .fa-primary,
