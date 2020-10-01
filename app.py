@@ -4,6 +4,8 @@ from flask_login import LoginManager, UserMixin, current_user, login_user,login_
 from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 import os
+import click
+
 
 app = Flask(__name__)
 
