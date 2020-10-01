@@ -31,6 +31,7 @@ def drop_db():
     db.drop_all()
 
 def commands_init_app(app):
+    print("creating commands")
     # add multiple commands in a bulk
     for command in [create_db, drop_db]:
         app.cli.add_command(app.cli.command()(command))
