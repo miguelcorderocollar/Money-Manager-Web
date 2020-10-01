@@ -4,3 +4,4 @@
 - Export Transactions CSV
 - Check donnut
 - Solve add category order
+- Make responsive (navbar & dashboard)
