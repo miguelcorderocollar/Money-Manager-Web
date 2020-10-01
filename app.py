@@ -3,16 +3,37 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, current_user, login_user,login_required,logout_user
 from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
+import os
 
 app = Flask(__name__)
 
-app.secret_key = "6549841231618"
+#app.secret_key = "6549841231618"
 #app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///site.db"
-app.config["SQLALCHEMY_DATABASE_URI"] = "postgres://ddfbbyssvxvzgr:b41f77b5698320226a7cc8244498a954557f228bb88e78c8c04e6ed78b84b993@ec2-54-228-250-82.eu-west-1.compute.amazonaws.com:5432/dcbdnv7hgijo2v"
+#app.config["SQLALCHEMY_DATABASE_URI"] = "postgres://ddfbbyssvxvzgr:b41f77b5698320226a7cc8244498a954557f228bb88e78c8c04e6ed78b84b993@ec2-54-228-250-82.eu-west-1.compute.amazonaws.com:5432/dcbdnv7hgijo2v"
+app.config.from_object(os.environ['APP_SETTINGS'])
+
 db = SQLAlchemy(app)
 login=LoginManager(app)
 login.login_view = 'login'
 
+#--------------
+#Commands CLI
+#--------------
+
+def create_db():
+    db.create_all()
+
+    
+def drop_db():
+    #"Cleans database
+    db.drop_all()
+
+def commands_init_app(app):
+    # add multiple commands in a bulk
+    for command in [create_db, drop_db]:
+        app.cli.add_command(app.cli.command()(command))
+
+commands_init_app(app)
 
 #--------------
 #Login Manager
