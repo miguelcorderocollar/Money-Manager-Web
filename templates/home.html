@@ -1,43 +1,24 @@
 {%extends "layout.html"%}
 {%block content%}
 
-<div class="container-balance">
-    <div></div>
-    <!--<h2>Hi, {{ current_user.username }}!</h2>-->
 
-    <div class="d-item" id="i-balance">
-    <h4>Balance</h4>
-    <h3>{{balance}}€</h3>
-</div>
-</div>
-
-
-<div class="home">
-
-    <div class="container-vertical" style="width:25%">
-        <div class="d-item" id="i-edit">
-            <h2>Edit Transactions</h2>
-            <form method="get" action="/edit">
-                <button type="submit">Let's go!</button>
+<div class="top">
+        <!--<h2>Hi, {{ current_user.username }}!</h2>-->
+        <div class="d-item" id="i-edit" >
+            <form id="edit-button" method="get" action="/edit">
+                <button type="submit">Transactions</button>
             </form>
         </div>
-        <div class="d-item" id="i-cat">
-            <h2>Add Category</h2>
-            <form id="cat-man" method="POST">
-                <label>Category</label>
-                <input type="text" name="cat-mod">
-                <input type="submit" name="cat-add" value="+">
-                <input type="submit" name="cat-delete" value="-">
-            </form>
-        </div >
+        <div class="d-item" id="i-balance">
+            <h4>Balance</h4>
+            <h3>{{balance}}€</h3>
+        </div>
     </div>
+
+<div class="home">
+   
     
-    <div class="d-item" id="i-timeline">
-        <h2>Account Evolution</h2>
-        <canvas id="timelineGraph"></canvas>
-    </div>
-    
-    <div class="container-vertical" style="width:35%">
+    <div id="expense-card">
         <div class="d-item" id="i-expense">
             <h2>Add Expense</h2>
             <form id="input-expense" method="POST">
@@ -56,7 +37,18 @@
                 <input type="submit" name="submit-input-expense" value="Submit">
             </form>
         </div>
-
+        <div class="d-item" id="i-cat">
+            <h2>Add Category</h2>
+            <form id="cat-man" method="POST">
+                <label>Category</label>
+                <input type="text" name="cat-mod">
+                <input type="submit" name="cat-add" value="+">
+                <input type="submit" name="cat-delete" value="-">
+            </form>
+        </div >
+    </div>
+    
+    <div id="income-card">
         <div class="d-item" id="i-income">
             <h2>Add Income</h2>
             <form id="input-income" method="POST">
@@ -76,13 +68,24 @@
                 <input type="text" name="note">
                 <input type="submit" name="submit-input-income" value="Submit">
             </form>
-        </div>
-
+        </div>  
+        <div class="d-item" id="i-cat">
+            <h2>Add Category</h2>
+            <form id="cat-man" method="POST">
+                <label>Category</label>
+                <input type="text" name="cat-mod">
+                <input type="submit" name="cat-add" value="+">
+                <input type="submit" name="cat-delete" value="-">
+            </form>
+        </div >
     </div>
     
     
-   
-    
+    <div class="d-item" id="i-timeline">
+        <h2>Account Evolution</h2>
+        <canvas id="timelineGraph"></canvas>
+    </div>
+        
 
     <div class="d-item" id="i-donnut">
         <div  id="i-range">
@@ -110,27 +113,6 @@
             <input type="submit" name="submit-year" value="Submit">
         </form>
         <canvas id="myChart"></canvas>
-    </div>
-   
-    <div class="d-item" id="i-table">
-        <table style="width:100%">
-            <tr>
-                <th>User_id</th>
-                <th>Date</th>
-                <th>Category</th>
-                <th>Amount</th>
-                <th>Note</th>
-            </tr>
-            {%for i in range(0, len)%}
-            <tr>
-                <td>{{expenses[i].user_id}}</td>
-                <td>{{expenses[i].date}}</td>
-                <td>{{expenses[i].category}}</td>
-                <td>{{expenses[i].amount}}</td>
-                <td>{{expenses[i].note}}</td>
-            </tr>
-            {%endfor%}
-        </table>
     </div>
     
 </div>
@@ -237,7 +219,9 @@
                     type: 'time',
                 }]
             },
-            legend: false
+            legend: false,
+            responsive: true,
+            maintainAspectRatio: false
         }
     });
 </script>

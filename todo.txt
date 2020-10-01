@@ -2,5 +2,5 @@
 - Add Categories Income
 - Monthly Summary Income
 - Export Transactions CSV
-- check donnut
--solve add ctaegory order
+- Check donnut
+- Solve add category order
