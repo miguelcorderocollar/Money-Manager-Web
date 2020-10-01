@@ -73,7 +73,7 @@ h4{
 #i-timeline {
     grid-column-start: 1;
     grid-column-end: 3;
-    height: 350px;
+    height: auto;
 }
 
 #i-expense {
