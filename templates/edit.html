@@ -3,58 +3,75 @@
 
 
 <div class="edit-container">
-    <h1>Let's edit</h1>
+    <h3 style="margin-bottom: 10px;">Transactions</h3>
+    <div id="buttons">
+        <button id="b-e"  class="mdl-button mdl-js-button mdl-button--raised  mdl-button--colored">
+            Expenses
+        </button>
+        <button id="b-i" class="mdl-button mdl-js-button mdl-button--raised">
+            Income
+        </button>
+    </div>
+    
     <div id="t-expenses">
-        <table style="width:100%">
-        <tr>
-            <th>User_id</th>
-            <th>Date</th>
-            <th>Category</th>
-            <th>Amount</th>
-            <th>Note</th>
-            <th>Delete</th>
-        </tr>
-        {%for i in range(0, len_ex)%}
-        <tr>
-            <td>{{expenses[i].user_id}}</td>
-            <td>{{expenses[i].date.strftime("%d-%m-%Y")}}</td>
-            <td>{{expenses[i].category}}</td>
-            <td>{{expenses[i].amount}}€</td>
-            <td>{{expenses[i].note}}</td>
-            <td>
-                <a href="/delete?type=expense&id={{expenses[i].id}}">
-                    <img src="static\images\red-x.png"  height="20px" width="20px" />
-                </a>
-            </td>
-        </tr>
-        {%endfor%}
-    </table>
+        <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+            <thead>
+                <tr>
+                    <th class="mdl-data-table__cell--non-numeric">Date</th>
+                    <th class="mdl-data-table__cell--non-numeric">Category</th>
+                    <th>Amount</th>
+                    <th class="mdl-data-table__cell--non-numeric">Note</th>
+                    <th class="mdl-data-table__cell--non-numeric">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {%for i in range(0, len_ex)%}
+                <tr>
+                    <td class="mdl-data-table__cell--non-numeric">{{expenses[i].date.strftime("%d-%m-%Y")}}</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{expenses[i].category}}</td>
+                    <td>{{expenses[i].amount}}€</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{expenses[i].note}}</td>
+                    <td class="mdl-data-table__cell--non-numeric">
+                        <a href="/delete?type=expense&id={{expenses[i].id}}">
+                            <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored">
+                                <i class="material-icons">delete</i>
+                            </button>
+                        </a>
+                    </td>
+                </tr>
+                {%endfor%}
+            </tbody>
+        </table>
     </div>
     <div id="t-income">
-        <table style="width:100%">
-        <tr>
-            <th>User_id</th>
-            <th>Date</th>
-            <th>Category</th>
-            <th>Amount</th>
-            <th>Note</th>
-            <th>Delete</th>
-        </tr>
-        {%for i in range(0, len_in)%}
-        <tr>
-            <td>{{incomes[i].user_id}}</td>
-            <td>{{incomes[i].date.strftime("%d-%m-%Y")}}</td>
-            <td>{{incomes[i].category}}</td>
-            <td>{{incomes[i].amount}}€</td>
-            <td>{{incomes[i].note}}</td>
-            <td>
-                <a href="/delete?type=income&id={{incomes[i].id}}">
-                    <img src="static\images\red-x.png"  height="20px" width="20px" />
-                </a>
-            </td>
-        </tr>
-        {%endfor%}
-    </table>
+        <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+            <thead>
+                <tr>
+                    <th class="mdl-data-table__cell--non-numeric">Date</th>
+                    <th class="mdl-data-table__cell--non-numeric">Category</th>
+                    <th>Amount</th>
+                    <th class="mdl-data-table__cell--non-numeric">Note</th>
+                    <th class="mdl-data-table__cell--non-numeric">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {%for i in range(0, len_in)%}
+                <tr>
+                    <td class="mdl-data-table__cell--non-numeric">{{incomes[i].date.strftime("%d-%m-%Y")}}</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{incomes[i].category}}</td>
+                    <td>{{incomes[i].amount}}€</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{incomes[i].note}}</td>
+                    <td class="mdl-data-table__cell--non-numeric">
+                        <a href="/delete?type=income&id={{incomes[i].id}}">
+                            <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored">
+                                <i class="material-icons">delete</i>
+                            </button>
+                        </a>
+                    </td>
+                </tr>
+                {%endfor%}
+            </tbody>
+        </table>
     </div>
 </div>
 

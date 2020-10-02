@@ -6,6 +6,26 @@
     
 }
 
+h2{
+    margin: 5px;
+}
+h3{
+margin:  5px;
+}
+h4{
+    margin:  5px;
+}
+h5{
+    margin:  5px;
+}
+h6{
+    margin:  5px;
+}
+
+.mdl-textfield{
+    width: 100px;
+}
+
 .top{
     width: 90%;
     display: flex;
@@ -38,8 +58,17 @@
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
 
-.d-item h2{
-    margin: 0 0 5px 0;
+h2{
+    margin: 5px;
+}
+h3{
+margin:  5px;
+}
+h4{
+    margin:  5px;
+}
+h5{
+    margin:  5px;
 }
 
 #i-balance{
@@ -48,17 +77,10 @@
     padding: 0px;
 }
 
-h3{
-margin:  5px;
-}
-
-h4{
-    margin:  5px;
-}
 
 #i-edit{
     text-align: center;
-    width: 10%;
+    width: 15%;
     padding: 5px;
     position: relative;
 }
