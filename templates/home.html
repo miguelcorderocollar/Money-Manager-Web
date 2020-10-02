@@ -37,7 +37,7 @@
                     </select>
                     <label class="mdl-textfield__label" for="category-exp">Category</label>
                 </div>
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label has-placeholder" style="width: 120px;">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label has-placeholder" style="width: 145px;">
                     <input class="mdl-textfield__input" type="date" id="date-exp" name="date">
                     <label class="mdl-textfield__label" for="date-exp">Date</label>
                 </div>
@@ -53,10 +53,16 @@
         <div class="d-item" id="i-cat">
             <h5>Add Category</h5>
             <form id="cat-man" method="POST">
-                <label>Category</label>
-                <input type="text" name="cat-mod">
-                <input type="submit" name="cat-add" value="+">
-                <input type="submit" name="cat-delete" value="-">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" id="cat-mod" name="cat-mod">
+                    <label class="mdl-textfield__label" for="cat-mod">Category</label>
+                </div>
+                <button type="submit" name="cat-add" class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored">
+                    <i class="material-icons">add_circle</i>
+                </button>
+                <button type="submit" name="cat-delete" class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored">
+                    <i class="material-icons">remove_circle</i>
+                </button>
             </form>
         </div >
     </div>
@@ -81,7 +87,7 @@
                     </select>
                     <label class="mdl-textfield__label" for="category-inc">Category</label>
                 </div>
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label has-placeholder" style="width: 120px;>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label has-placeholder" style="width: 145px;">
                     <input class="mdl-textfield__input" type="date" id="date-inc" name="date">
                     <label class="mdl-textfield__label" for="date-inc">Date</label>
                 </div>
@@ -97,48 +103,66 @@
         <div class="d-item" id="i-cat">
             <h5>Add Category</h5>
             <form id="cat-man" method="POST">
-                <label>Category</label>
-                <input type="text" name="cat-mod">
-                <input type="submit" name="cat-add" value="+">
-                <input type="submit" name="cat-delete" value="-">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" id="cat-mod" name="cat-mod">
+                    <label class="mdl-textfield__label" for="cat-mod">Category</label>
+                </div>
+                <button type="submit" name="cat-add" class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored">
+                    <i class="material-icons">add_circle</i>
+                </button>
+                <button type="submit" name="cat-delete" class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored">
+                    <i class="material-icons">remove_circle</i>
+                </button>
+                
             </form>
         </div >
     </div>
     
     
     <div class="d-item" id="i-timeline">
-        <h5>Account Evolution</h5>
         <canvas id="timelineGraph"></canvas>
         <div></div>
     </div>
         
 
     <div class="d-item" id="i-donnut">
+        <canvas id="donnutChart"></canvas>
         <div  id="i-range">
-            <h5>Monthly Summary</h5>
             <form id="input-range" method="POST">
-                <label for="start">Start date:</label>
-                <input type="date" id="start" name="start">
-                <label for="start">End date:</label>
-                <input type="date" id="end" name="end">
-                <input type="submit"name="submit-date" value="Submit">
+                
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label has-placeholder" style="width: 150px;">
+                    <input class="mdl-textfield__input" type="date" id="start" name="start">
+                    <label class="mdl-textfield__label" for="start">Start</label>
+                </div>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label has-placeholder" style="width: 150px;">
+                    <input class="mdl-textfield__input" type="date" id="end" name="end">
+                    <label class="mdl-textfield__label" for="end">End</label>
+                </div>
+                <button type="submit" name="submit-date" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                    Submit
+                </button>
             </form>
         </div>
-        <canvas id="donnutChart"></canvas>
     </div>
 
     <div class="d-item" id="i-chart">
-        <h5>Annual Summary</h5>
+        <canvas id="myChart"></canvas>
         <form id="cat-man" method="POST">
-            <label>Year selection</label>
-            <select id="year" name="year">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <select class="mdl-textfield__input" id="year" name="year">
+                    <option></option>
                     <option value='2020'>2020</option>
                     <option value='2019'>2019</option>
                     <option value='2018'>2018</option>
-            </select>
-            <input type="submit" name="submit-year" value="Submit">
+                </select>
+                <label class="mdl-textfield__label" for="year">Year</label>
+            </div>
+            
+            <button  type="submit" name="submit-year"  class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored">
+                <i class="material-icons">send</i>
+              </button>
+            
         </form>
-        <canvas id="myChart"></canvas>
     </div>
     
 </div>
@@ -214,7 +238,12 @@
         },
 
         // Configuration options go here
-        options: {}
+        options: {
+            title: {
+                    display: true,
+                    text: 'Monthly summary'
+                }
+        }
     });
 
     var ctx3 = document.getElementById('timelineGraph').getContext('2d');
@@ -247,7 +276,11 @@
             },
             legend: false,
             responsive: true,
-            maintainAspectRatio: false
+            maintainAspectRatio: false,
+            title: {
+                    display: true,
+                    text: 'Account evolution'
+                }
         }
     });
 </script>
