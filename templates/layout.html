@@ -41,6 +41,8 @@
     <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
     <link rel="stylesheet" href="{{url_for('static',filename='css/dashboard.css')}}">
     <link rel="stylesheet" href="{{url_for('static',filename='css/edit.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/landing.css')}}">
+
 
 </head>
 
@@ -73,31 +75,36 @@
             </li>
 
             <li class="nav-item">
-                <a href="{{ url_for('plot') }}" class="nav-link">
+                <a href="{{ url_for('landing') }}" class="nav-link">
                     <i class="fas fa-info-circle fa-primary " style="font-size: 30px;"></i>
                     <span class="link-text">About</span>
                 </a>
             </li>
-
+            
             <li class="nav-item">
                 <a href="#settings" class="nav-link">
                     <i class="fas fa-cog fa-primary " style="font-size: 30px;"></i>
                     <span class="link-text">Settings</span>
                 </a>
             </li>
-            <li class="nav-item">
-                <a href="{{ url_for('login') }}" class="nav-link">
-                    <i class="fas fa-sign-in-alt fa-primary " style="font-size: 30px;"></i>
-                    <span class="link-text">Log In</span>
-                </a>
-            </li>
-
+            
+            {% block navbar %}
+            {% if current_user.is_authenticated %}
             <li class="nav-item">
                 <a href="{{ url_for('logout') }}" class="nav-link">
                     <i class="fas fa-sign-out-alt fa-primary " style="font-size: 30px;"></i>
                     <span class="link-text">Sign Out</span>
                 </a>
             </li>
+            {% else %}
+            <li class="nav-item">
+                <a href="{{ url_for('login') }}" class="nav-link">
+                    <i class="fas fa-sign-in-alt fa-primary " style="font-size: 30px;"></i>
+                    <span class="link-text">Log In</span>
+                </a>
+            </li>
+            {% endif %}
+            {% endblock %}
 
             <li class="nav-item" id="themeButton">
                 <a href="#" class="nav-link">

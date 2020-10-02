@@ -26,6 +26,8 @@ h6{
     width: 100px;
 }
 
+
+
 .top{
     width: 90%;
     display: flex;
@@ -73,14 +75,14 @@ h5{
 
 #i-balance{
     text-align: center;
-    width: 20%;
+    width: 180px;
     padding: 0px;
 }
 
 
 #i-edit{
     text-align: center;
-    width: 15%;
+    width: 180px;
     padding: 5px;
     position: relative;
 }
@@ -120,6 +122,9 @@ h5{
 }
 
 #i-range {
-    
+    text-align: center;
 }
 
+#f-year {
+    text-align: center;
+}

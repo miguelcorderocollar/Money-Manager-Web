@@ -21,7 +21,7 @@
        
     <div id="expense-card">
         <div class="d-item" id="i-expense">
-            <h5>Add Expense</h5>
+            <h6>Add Expense</h6>
             <form id="input-expense" method="POST">
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 60px;">
                     <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="amount-exp" name="amount">
@@ -51,7 +51,7 @@
             </form>
         </div>
         <div class="d-item" id="i-cat">
-            <h5>Add Category</h5>
+            <h6>Add Category</h6>
             <form id="cat-man" method="POST">
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                     <input class="mdl-textfield__input" type="text" id="cat-mod" name="cat-mod">
@@ -69,7 +69,7 @@
     
     <div id="income-card">
         <div class="d-item" id="i-income">
-            <h5>Add Income</h5>
+            <h6>Add Income</h6>
             <form id="input-income" method="POST">
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 60px;">
                     <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="amount-inc" name="amount">
@@ -101,7 +101,7 @@
             </form>
         </div>  
         <div class="d-item" id="i-cat">
-            <h5>Add Category</h5>
+            <h6>Add Category</h6>
             <form id="cat-man" method="POST">
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                     <input class="mdl-textfield__input" type="text" id="cat-mod" name="cat-mod">
@@ -129,7 +129,6 @@
         <canvas id="donnutChart"></canvas>
         <div  id="i-range">
             <form id="input-range" method="POST">
-                
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label has-placeholder" style="width: 150px;">
                     <input class="mdl-textfield__input" type="date" id="start" name="start">
                     <label class="mdl-textfield__label" for="start">Start</label>
@@ -147,7 +146,7 @@
 
     <div class="d-item" id="i-chart">
         <canvas id="myChart"></canvas>
-        <form id="cat-man" method="POST">
+        <form id="f-year" method="POST">
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 <select class="mdl-textfield__input" id="year" name="year">
                     <option></option>
@@ -157,11 +156,9 @@
                 </select>
                 <label class="mdl-textfield__label" for="year">Year</label>
             </div>
-            
-            <button  type="submit" name="submit-year"  class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored">
-                <i class="material-icons">send</i>
-              </button>
-            
+            <button type="submit" name="submit-year" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                Submit
+            </button>            
         </form>
     </div>
     
