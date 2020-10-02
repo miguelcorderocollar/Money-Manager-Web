@@ -14,9 +14,13 @@
     display: flex;
     justify-content: center;
     margin-bottom: 10px;
+   
+
+}
+
+#buttons button{
     margin-left: 5px;
     margin-right: 5px;
-
 }
 #t-expenses{
     text-align: center;
