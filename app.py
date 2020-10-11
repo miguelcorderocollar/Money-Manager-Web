@@ -1,10 +1,11 @@
-from flask import Flask, render_template, request, Markup,jsonify,redirect, url_for
+from flask import Flask, Response, render_template, request, Markup,jsonify,redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, current_user, login_user,login_required,logout_user
 from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 import os
 import click
+import csv
 
 
 app = Flask(__name__)
@@ -295,7 +296,8 @@ def home_post():
     
     balance=get_balance(all_expenses,all_incomes)
     timeline=get_timeline(all_expenses,all_incomes)
-    
+    categories=getcategories()
+
     colors=getcolors(categories)
 
     return render_template("home.html", 
@@ -328,6 +330,25 @@ def delete():
     db.session.commit()
 
     return redirect(url_for('edit'))
+
+
+@app.route("/export")
+@login_required
+def export():
+    expenses = Expenses.query.filter(Expenses.user_id==current_user.id).all()
+    incomes = Income.query.filter(Income.user_id==current_user.id).all()
+    csv="Expenses\n"
+    for expense in expenses :
+        csv=csv+expense.date.strftime("%d-%m-%Y")+","+expense.category+","+str(expense.amount)+","+expense.note+"\n"
+    csv=csv+"\nIncomes\n"
+    for income in incomes :
+        csv=csv+income.date.strftime("%d-%m-%Y")+","+income.category+","+str(income.amount)+","+income.note+"\n"
+
+    return Response(
+        csv,
+        mimetype="text/csv",
+        headers={"Content-disposition":
+                 "attachment; filename=Transactions.csv"})
     
 
 @app.route("/login")

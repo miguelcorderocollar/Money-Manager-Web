@@ -3,7 +3,15 @@
 
 
 <div class="edit-container">
-    <h3 style="margin-bottom: 10px;">Transactions</h3>
+    <div class="top-edit">
+        <h3 style="margin-bottom: 10px;">Transactions</h3>
+        <form id="export-button" method="get" action="/export">
+            <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                Export
+            </button>
+        </form>
+    </div>
+    
     <div id="buttons">
         <button id="b-e"  class="mdl-button mdl-js-button mdl-button--raised  mdl-button--colored">
             Expenses
