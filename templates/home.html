@@ -21,7 +21,13 @@
        
     <div id="expense-card">
         <div class="d-item" id="i-expense">
-            <h6>Add Expense</h6>
+            <div class="top-expense">
+                <h6>Add Expense</h6>
+                <button id="but-cat"  class="mdl-button mdl-js-button mdl-button--primary">
+                    Add Category
+                </button>
+            </div>
+            
             <form id="input-expense" method="POST">
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 60px;">
                     <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="amount-exp" name="amount">
@@ -50,21 +56,7 @@
                 </button>
             </form>
         </div>
-        <div class="d-item" id="i-cat">
-            <h6>Add Category</h6>
-            <form id="cat-man" method="POST">
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                    <input class="mdl-textfield__input" type="text" id="cat-mod" name="cat-mod">
-                    <label class="mdl-textfield__label" for="cat-mod">Category</label>
-                </div>
-                <button type="submit" name="cat-add" class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored">
-                    <i class="material-icons">add_circle</i>
-                </button>
-                <button type="submit" name="cat-delete" class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored">
-                    <i class="material-icons">remove_circle</i>
-                </button>
-            </form>
-        </div >
+       
     </div>
     
     <div id="income-card">
@@ -100,22 +92,7 @@
                 </button>
             </form>
         </div>  
-        <div class="d-item" id="i-cat">
-            <h6>Add Category</h6>
-            <form id="cat-man" method="POST">
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                    <input class="mdl-textfield__input" type="text" id="cat-mod" name="cat-mod">
-                    <label class="mdl-textfield__label" for="cat-mod">Category</label>
-                </div>
-                <button type="submit" name="cat-add" class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored">
-                    <i class="material-icons">add_circle</i>
-                </button>
-                <button type="submit" name="cat-delete" class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored">
-                    <i class="material-icons">remove_circle</i>
-                </button>
-                
-            </form>
-        </div >
+        
     </div>
     
     
@@ -161,6 +138,31 @@
         </form>
     </div>
     
+    <div class="container-modal" style="display: none;">
+        <div class="d-item" id="cat-modal">
+            <div class="top-cat">
+                 <h6>Add Category</h6>
+                 <button id="close-cat" class="mdl-button mdl-js-button mdl-button--icon">
+                    <i class="material-icons">close</i>
+                  </button>
+            </div>
+           
+            <form id="cat-man" method="POST">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:150px;">
+                    <input class="mdl-textfield__input" type="text" id="cat-mod" name="cat-mod">
+                    <label class="mdl-textfield__label" for="cat-mod">Category</label>
+                </div>
+                <button type="submit" name="cat-add" class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored">
+                    <i class="material-icons">add_circle</i>
+                </button>
+                <button type="submit" name="cat-delete" class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored">
+                    <i class="material-icons">remove_circle</i>
+                </button>
+            </form>
+        </div >
+    </div>
+    
+
 </div>
 
 <script>
