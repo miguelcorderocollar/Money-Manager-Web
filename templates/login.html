@@ -1,25 +1,50 @@
 {%extends "layout.html"%}
 {%block content%}
 
-<div class="logsign">
+<div class="logsign"> 
     <div class="wrapper">
         <div class="contain">
-          <h1>{{user_created | safe}}</h1>
-          <h1>{{login_error | safe}}</h1>
+          <div class="msg">{{user_created | safe}}</div>
+          <div class="msg">{{login_error | safe}}</div>
           <div class="signup">Sign Up</div>
           <div class="login">Log In</div>
            <form class="signup-form" method="POST">
-              <input type="email" placeholder="Your Email Address" class="inputform" name="email"><br />
-              <input type="text" placeholder="Choose a Username" class="inputform"  name="username"><br />
-              <input type="password" placeholder="Choose a Password" class="inputform"  name="password"><br />
-              <input class="btn" type="submit" name="submit-signup" value="Submit">
+               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label login-item">
+                  <input class="mdl-textfield__input" type="mail" id="email" name="email">
+                  <label class="mdl-textfield__label" for="email">Email</label>
+               </div>
+               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label login-item">
+                  <input class="mdl-textfield__input" type="text" id="username" name="username">
+                  <label class="mdl-textfield__label" for="username">Username</label>
+               </div>
+               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label login-item">
+                  <input class="mdl-textfield__input" type="password" id="password" name="password">
+                  <label class="mdl-textfield__label" for="password">Password</label>
+               </div>
+               <button style="margin-top: 20px;" type="submit" name="submit-signup" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                  Submit
+               </button>
            </form>
           <form class="login-form" method="POST">
-              <input type="text" placeholder="Email or Username" class="inputform" name="email_or_username"><br />
-              <input type="password" placeholder="Password" class="inputform" name="password"><br />
-              <input type="checkbox" name="rememberMe" id="rememberMe"> <label for="rememberMe">Remember me</label>
-              <input class="btn" type="submit" name="submit-login" value="Submit">
-              <span><a href="#">I forgot my username or password.</a></span>
+               <span class="mdl-chip">
+                  <span class="mdl-chip__text">Demo user/pw: guest/guest</span>
+               </span>
+               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label login-item">
+                  <input class="mdl-textfield__input" type="text" id="email_or_username" name="email_or_username">
+                  <label class="mdl-textfield__label" for="email_or_username">Email or Username</label>
+               </div>
+               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label login-item">
+                  <input class="mdl-textfield__input" type="password" id="password_l" name="password">
+                  <label class="mdl-textfield__label" for="password_l">Password</label>
+               </div>
+               
+                <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="rememberMe">
+                  <input type="checkbox" id="rememberMe" name="rememberMe" class="mdl-switch__input">
+                  <span class="mdl-switch__label">Remember me</span>
+                </label>
+                <button style="margin-top: 20px;" type="submit" name="submit-login" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                  Submit
+               </button>
            </form>
           
         </div>

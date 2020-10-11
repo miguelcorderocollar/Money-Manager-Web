@@ -3,24 +3,41 @@
 
 <div class="landing">
     <div class="l-top">
-
+        <p class="title-landing">Money Manager</p>
+        {% block buttontop %}
+        {% if current_user.is_authenticated %}
+        <form id="login-button" method="get" action="/dashboard">
+            <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                Dashboard
+            </button>
+        </form>
+        {% else %}
+        <form id="login-button" method="get" action="/login">
+            <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                Sign In
+            </button>
+        </form>
+        {% endif %}
+        {% endblock %}
     </div>
-    <div class="l-desc">
-        
-    </div>
+    
     <div class="l-img">
-
+        <img height="300px" width="341px" src="{{url_for('static',filename='images/undraw.png')}}">
     </div>
     <div class="l-dev">
-        <div>
-
-        </div>
+        <p>Technologies used for the development</p>
         <div class="dev-icons">
+            <img class="dev-img" src="{{url_for('static',filename='images/python.png')}}">
+            <img class="dev-img" src="{{url_for('static',filename='images/html.png')}}">
+            <img class="dev-img" src="{{url_for('static',filename='images/css.png')}}">
+            <img class="dev-img" src="{{url_for('static',filename='images/js.png')}}">
+            <img class="dev-img" src="{{url_for('static',filename='images/flask.png')}}">
+            <img class="dev-img" src="{{url_for('static',filename='images/chartjs.svg')}}">
 
         </div>
     </div>
     <div class="l-footer">
-
+        <p>Made by Miguel Cordero Collar for practising 🐍 and learning back-end development</p>
     </div>
     
 </div>

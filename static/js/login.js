@@ -1,5 +1,5 @@
-$(".login-form").hide();
-$(".login").css("background", "none");
+$(".signup-form").hide();
+$(".signup").css("background", "none");
 
 $(".login").click(function(){
   $(".signup-form").hide();

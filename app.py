@@ -208,6 +208,12 @@ def get_timeline(expenses,incomes):
 #Pages
 #--------------
 @app.route("/")
+def landing():
+
+    
+    return render_template("landing.html")
+
+@app.route("/dashboard")
 @login_required
 def home():
 
@@ -231,7 +237,7 @@ def home():
         categories=categories,
         lencat=len(categories),colors=colors,exp_t_c=exp_t_c)
 
-@app.route("/", methods=["POST"])
+@app.route("/dashboard", methods=["POST"])
 @login_required
 def home_post():
     form=request.form
@@ -338,7 +344,7 @@ def login_post():
             add_user(form)
         except:
             print('no add_user')
-        user_created= "User created"
+        user_created='<span class="mdl-chip"> <span class="mdl-chip__text">User Created</span></span>'
         print(User.query.all())
         return render_template("login.html",user_created=user_created)
 
@@ -346,23 +352,13 @@ def login_post():
         if(check_user(form)):
             return redirect(url_for('home'))
         else:
-            login_error= "Login Error"
+            login_error= '<span class="mdl-chip"> <span class="mdl-chip__text">Log in error</span></span>'
             return render_template("login.html",login_error=login_error)
 
 
         
     
     return render_template("login.html")
-
-
-@app.route("/landing/")
-def landing():
-   
-
-    return render_template(
-        "landing.html"
-    )
-
 
 
 
