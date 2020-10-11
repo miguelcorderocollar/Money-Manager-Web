@@ -124,7 +124,6 @@
         <div></div>
     </div>
         
-
     <div class="d-item" id="i-donnut">
         <canvas id="donnutChart"></canvas>
         <div  id="i-range">
@@ -199,6 +198,8 @@
                     intersect: false
                 },
                 responsive: true,
+                maintainAspectRatio: true,
+                aspectRatio: 1.5,
                 scales: {
                     xAxes: [{
                         stacked: true,
@@ -239,7 +240,9 @@
             title: {
                     display: true,
                     text: 'Monthly summary'
-                }
+                },
+            maintainAspectRatio: true,
+            aspectRatio: 1.5,
         }
     });
 
@@ -273,7 +276,8 @@
             },
             legend: false,
             responsive: true,
-            maintainAspectRatio: false,
+            maintainAspectRatio: true,
+            aspectRatio: 4,
             title: {
                     display: true,
                     text: 'Account evolution'
