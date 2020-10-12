@@ -101,26 +101,6 @@ h5{
     height: auto;
 }
 
-#i-expense {
-
-}
-
-#i-cat {
-  
-}
-
-#i-income {
-
-}
-
-#i-chart {
-   
-}
-
-#i-donnut {
-   
-}
-
 #i-range {
     text-align: center;
 }
@@ -152,4 +132,36 @@ h5{
    display: flex;
    justify-content: center;
    align-items: center;
+}
+
+
+@media only screen and (max-width: 550px){
+   .home{
+       display: grid;
+       width: 100%;
+       grid-template-columns: 1fr;
+       grid-template-rows: auto auto auto auto auto;
+       grid-template-areas:
+        "exp"
+        "inc"
+        "time"
+        "don"
+        "bar"
+   }
+   #expense-card{
+       grid-area: exp;
+   }
+   #income-card{
+    grid-area: inc;
+    }
+    #i-timeline{
+        grid-area: time;
+        max-width: 100%;
+    }
+    #i-donnut{
+        grid-area: don;
+    }
+    #i-chart{
+        grid-area: bar;
+    }
 }

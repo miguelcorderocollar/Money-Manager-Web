@@ -28,7 +28,7 @@
                     <th class="mdl-data-table__cell--non-numeric">Date</th>
                     <th class="mdl-data-table__cell--non-numeric">Category</th>
                     <th>Amount</th>
-                    <th class="mdl-data-table__cell--non-numeric">Note</th>
+                    <th class="mdl-data-table__cell--non-numeric note-table">Note</th>
                     <th class="mdl-data-table__cell--non-numeric">Delete</th>
                 </tr>
             </thead>
@@ -38,7 +38,7 @@
                     <td class="mdl-data-table__cell--non-numeric">{{expenses[i].date.strftime("%d-%m-%Y")}}</td>
                     <td class="mdl-data-table__cell--non-numeric">{{expenses[i].category}}</td>
                     <td>{{expenses[i].amount}}€</td>
-                    <td class="mdl-data-table__cell--non-numeric">{{expenses[i].note}}</td>
+                    <td class="mdl-data-table__cell--non-numeric note-table">{{expenses[i].note}}</td>
                     <td class="mdl-data-table__cell--non-numeric">
                         <a href="/delete?type=expense&id={{expenses[i].id}}">
                             <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored">
@@ -58,7 +58,7 @@
                     <th class="mdl-data-table__cell--non-numeric">Date</th>
                     <th class="mdl-data-table__cell--non-numeric">Category</th>
                     <th>Amount</th>
-                    <th class="mdl-data-table__cell--non-numeric">Note</th>
+                    <th class="mdl-data-table__cell--non-numeric note-table">Note</th>
                     <th class="mdl-data-table__cell--non-numeric">Delete</th>
                 </tr>
             </thead>
@@ -68,7 +68,7 @@
                     <td class="mdl-data-table__cell--non-numeric">{{incomes[i].date.strftime("%d-%m-%Y")}}</td>
                     <td class="mdl-data-table__cell--non-numeric">{{incomes[i].category}}</td>
                     <td>{{incomes[i].amount}}€</td>
-                    <td class="mdl-data-table__cell--non-numeric">{{incomes[i].note}}</td>
+                    <td class="mdl-data-table__cell--non-numeric note-table">{{incomes[i].note}}</td>
                     <td class="mdl-data-table__cell--non-numeric">
                         <a href="/delete?type=income&id={{incomes[i].id}}">
                             <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored">
