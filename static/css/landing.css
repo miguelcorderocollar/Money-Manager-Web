@@ -69,10 +69,11 @@
 }
 
 .title-landing{
-    font-family: Roboto;
+    font-family: 'Raleway', sans-serif;;
     font-size: 40px;
     color: white;
     font-weight: bold;
+    margin-top: 5px;
 }
 
 @media only screen and (max-width: 550px){
