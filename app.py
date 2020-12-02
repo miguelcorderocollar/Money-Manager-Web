@@ -81,14 +81,14 @@ class Categories(db.Model):
 #--------------
 #Funcions
 #--------------
-def exp_by_date (start,end):
-    if start==None and  end==None:
-        if datetime.today().month==12:
-            start=datetime(datetime.today().year, datetime.today().month, 1)
-            end=datetime(datetime.today().year+1, 1, 1)
-        else:
-            start=datetime(datetime.today().year, datetime.today().month, 1)
+def exp_by_date (start=1,end=1):
+    if start == 1 and end == 1:
+        if datetime.today().month<12:
+            start=datetime(datetime.today().year, datetime.today().month,1)
             end=datetime(datetime.today().year, datetime.today().month+1, 1)
+        else:
+            start=datetime(datetime.today().year, datetime.today().month,1)
+            end=datetime(datetime.today().year+1, 1, 1)
     else:
         start=datetime(int(start[0:4]),int(start[5:7]),int(start[-2:]))
         end=datetime(int(end[0:4]),int(end[5:7]),int(end[-2:]))
