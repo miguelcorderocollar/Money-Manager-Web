@@ -2,3 +2,4 @@
 - Add Categories Income
 - Monthly Summary Income
 - Make responsive (navbar & dashboard)
+- Fix Heroku 
